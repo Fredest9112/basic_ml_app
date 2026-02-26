@@ -14,3 +14,7 @@ Purpose and Current Status
 The goal of this work is to provide an initial introduction to developing machine learning models and implementing them within mobile applications. This serves as the starting point for a research line focused on bird detection.
 
 At this stage, the project is considered complete regarding the implementation of the basic model, while the specific research into bird detection remains in its foundational phase.
+
+Evidence of App working:
+
+[basic ml app.webm](https://github.com/user-attachments/assets/8a6203a7-ac56-4769-a10c-9cacdf6f0b19)
