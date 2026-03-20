@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.basic_ml_app.ui.screens.main.PredictionState.*
 
@@ -17,7 +18,9 @@ fun MainScreen(
     onAction: (MainScreenAction) -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag(MainScreenTags.SCREEN_CONTAINER),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround
     ) {
@@ -29,10 +32,12 @@ fun MainScreen(
             onValueChange = {
                 onAction(MainScreenAction.OnTextChanged(input = it))
             },
-            label = { Text("Insert a value") }
+            label = { Text("Insert a value") },
+            modifier = Modifier.testTag(MainScreenTags.INPUT_FIELD)
         )
         Text(
-            text = "Result is : ${getResult(state = state.predictionState)}"
+            text = "Result is : ${getResult(state = state.predictionState)}",
+            modifier = Modifier.testTag(MainScreenTags.RESULT_TEXT)
         )
     }
 }

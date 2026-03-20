@@ -44,26 +44,43 @@ android {
 }
 
 dependencies {
-
+    // ── Core Android ─────────────────────────────────────────────────────────
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
+    // ── Compose ───────────────────────────────────────────────────────────────
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.serialization.json)
-    implementation(libs.hilt.navigation.compose)
+
+    // ── Navigation ────────────────────────────────────────────────────────────
     implementation(libs.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
+
+    // ── Dependency Injection ──────────────────────────────────────────────────
     implementation(libs.hilt.android)
-    implementation (libs.tensorflow.lite)
     ksp(libs.hilt.compiler)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+
+    // ── Serialization ─────────────────────────────────────────────────────────
+    implementation(libs.serialization.json)
+
+    // ── Machine Learning ──────────────────────────────────────────────────────
+    implementation(libs.tensorflow.lite)
+
+    // ── Unit tests ────────────────────────────────────────────────────────────
+    testImplementation(libs.bundles.unitTest)
+
+    // ── Instrumented tests ────────────────────────────────────────────────────
+    // The BOM must be imported separately for the androidTest classpath so that
+    // version-less Compose test artifacts (ui-test-junit4 etc.) resolve correctly.
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.bundles.androidTest)
+    kspAndroidTest(libs.hilt.compiler.androidtest)
+
+    // ── Debug only ────────────────────────────────────────────────────────────
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
